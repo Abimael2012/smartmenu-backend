@@ -1,4 +1,4 @@
-require('dotenv').config(); 
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
@@ -144,5 +144,4 @@ app.get('/api/admin/platillos/:restauranteId', async (req, res) => {
 // Encendemos el motor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor de SmartMenu corriendo en http://localhost:${PORT}`);
-});
+  console.log(`🚀 Servidor de SmartMenu// Vercel redeploy attempt: 2026-04-16T23:40:00Z
