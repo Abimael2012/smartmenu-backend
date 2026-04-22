@@ -178,4 +178,5 @@ app.patch('/api/platillos/:id/disponibilidad', async (req, res) => {
     const { id } = req.params;
     const { disponible } = req.body;
 
-    const query = 'UPDATE platillos SET disponible = $
+    const query = 'UPDATE platillos SET disponible = $1 WHERE id = $2 RETURNING *';
+    const resultado = await 
