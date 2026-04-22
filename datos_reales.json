@@ -1,0 +1,36 @@
+{
+  "restaurantes": [
+    {
+      "id": 2,
+      "nombre": "SmartMenu",
+      "logo_url": "",
+      "color_primario": "#FF6B35",
+      "color_secundario": "#004E89",
+      "color_fondo": "#F7F7F7",
+      "tipo_fuente": "Arial"
+    }
+  ],
+  "categorias": [
+    { "id": 3, "restaurante_id": 2, "nombre": "Hamburguesas", "orden": 1 },
+    { "id": 4, "restaurante_id": 2, "nombre": "Perritos Calientes", "orden": 2 },
+    { "id": 5, "restaurante_id": 2, "nombre": "Snacks y Otros", "orden": 3 },
+    { "id": 6, "restaurante_id": 2, "nombre": "Bebidas", "orden": 4 }
+  ],
+  "platillos": [
+    { "id": 5, "categoria_id": 3, "nombre": "Hamburguesa Clásica", "descripcion": "Res, jamón, quesos anasazi", "precio": 74.00, "imagen_url": "", "disponible": true },
+    { "id": 6, "categoria_id": 3, "nombre": "Hamburguesa de Camarón", "descripcion": "Camarones especiales y salsas", "precio": 107.00, "imagen_url": "", "disponible": true },
+    { "id": 7, "categoria_id": 3, "nombre": "Hamburguesa Especial", "descripcion": "Ingredientes especiales", "precio": 95.00, "imagen_url": "", "disponible": true },
+    { "id": 8, "categoria_id": 3, "nombre": "Hamburguesa Doble", "descripcion": "Double carne y double todo", "precio": 135.00, "imagen_url": "", "disponible": true },
+    { "id": 9, "categoria_id": 4, "nombre": "Hot Dog Clásico", "descripcion": "Salchicha de pavo envuelta", "precio": 27.00, "imagen_url": "", "disponible": true },
+    { "id": 10, "categoria_id": 4, "nombre": "Hot Dog Clásico con Papa", "descripcion": "Salchicha con tocino y papa", "precio": 37.00, "imagen_url": "", "disponible": true },
+    { "id": 11, "categoria_id": 4, "nombre": "Hot Dog Especial", "descripcion": "Salchicha con tocino", "precio": 39.00, "imagen_url": "", "disponible": true },
+    { "id": 12, "categoria_id": 4, "nombre": "Hot Dog Especial con Papa", "descripcion": "Versión especial acompañado", "precio": 50.00, "imagen_url": "", "disponible": true },
+    { "id": 13, "categoria_id": 5, "nombre": "Orden de Papas", "descripcion": "Papas a la francesa crujientes", "precio": 28.00, "imagen_url": "", "disponible": true },
+    { "id": 14, "categoria_id": 5, "nombre": "Salchipulpo", "descripcion": "Salchipulpos preparados", "precio": 39.00, "imagen_url": "", "disponible": true },
+    { "id": 15, "categoria_id": 5, "nombre": "Salchicha Guisada", "descripcion": "Salchicha guisada india", "precio": 16.00, "imagen_url": "", "disponible": true },
+    { "id": 16, "categoria_id": 5, "nombre": "Sandwich", "descripcion": "Preparado sencillo", "precio": 35.00, "imagen_url": "", "disponible": true },
+    { "id": 17, "categoria_id": 5, "nombre": "Sincronizada con Papas", "descripcion": "Jamón y queso fundido", "precio": 45.00, "imagen_url": "", "disponible": true },
+    { "id": 18, "categoria_id": 6, "nombre": "Refrescos", "descripcion": "Variedad de sabores", "precio": 26.00, "imagen_url": "", "disponible": true },
+    { "id": 19, "categoria_id": 6, "nombre": "Agua Fresca", "descripcion": "Variedad del día", "precio": 15.00, "imagen_url": "", "disponible": true }
+  ]
+}
