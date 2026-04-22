@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>600 Sur Hochos y más - SmartMenu Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23333" width="100" height="100"/><circle cx="50" cy="50" r="20" fill="%23444"/></svg>');
+        }
+        .font-impacto { font-family: 'Lacquer', cursive; }
+        .font-pizarra { font-family: '"Patrick Hand"', cursive; }
+    </style>
+</head>
+<body class="font-pizarra antialiased text-gray-100">
+    <div id="app" class="max-w-md mx-auto min-h-screen pb-10">
+        <!-- HEADER -->
+        <header class="p-8 pt-14 text-center bg-black/85 border-b-4 border-dashed border-yellow-600 shadow-2xl">
+            <h1 class="font-impacto text-5xl text-yellow-500 leading-tight transform -rotate-2 drop-shadow-[0_4px_0px_rgba(0,0,0,1)]">
+                600 SUR HOCHOS Y MÁS
+            </h1>
+            <p class="font-pizarra text-2xl text-white opacity-80 mt-4 tracking-widest uppercase">
+                MENÚ DIGITAL
+            </p>
+        </header>
+
+        <!-- TABS NAVIGATION -->
+        <div class="bg-black/85 border-b border-yellow-600/50 p-4 flex gap-2 sticky top-0 z-10">
+            <button onclick="mostrarSeccion('menu')" class="tab-btn flex-1 py-2 px-4 rounded bg-yellow-600 text-black font-bold" data-tab="menu">🍽️ MENÚ</button>
+            <button onclick="mostrarSeccion('admin')" class="tab-btn flex-1 py-2 px-4 rounded bg-gray-700 text-white font-bold hover:bg-gray-600" data-tab="admin">⚙️ ADMIN</button>
+        </div>
+
+        <!-- MENÚ PÚBLICO -->
+        <main id="menu-section" class="p-5 space-y-8 mt-6">
+            <!-- CARNES -->
+            <section class="bg-gray-900/50 p-6 rounded-lg border-l-4 border-red-600">
+                <h2 class="text-2xl font-bold text-red-500 mb-4 uppercase tracking-wider">🔥 CARNES PREMIUM</h2>
+                <div id="carnes" class="space-y-4"></div>
+            </section>
+
+            <!-- SÁNDWICHES -->
+            <section class="bg-gray-900/50 p-6 rounded-lg border-l-4 border-orange-500">
+                <h2 class="text-2xl font-bold text-orange-500 mb-4 uppercase tracking-wider">🥪 SÁNDWICHES</h2>
+                <div id="sandwiches" class="space-y-4"></div>
+            </section>
+
+            <!-- TACOS -->
+            <section class="bg-gray-900/50 p-6 rounded-lg border-l-4 border-green-500">
+                <h2 class="text-2xl font-bold text-green-500 mb-4 uppercase tracking-wider">🌮 TACOS</h2>
+                <div id="tacos" class="space-y-4"></div>
+            </section>
+
+            <!-- BEBIDAS -->
+            <section class="bg-gray-900/50 p-6 rounded-lg border-l-4 border-blue-500">
+                <h2 class="text-2xl font-bold text-blue-500 mb-4 uppercase tracking-wider">🥤 BEBIDAS</h2>
+                <div id="bebidas" class="space-y-4"></div>
+            </section>
+        </main>
+
+        <!-- PANEL ADMINISTRATIVO -->
+        <main id="admin-section" class="p-5 hidden">
+            <div class="bg-black/85 p-6 rounded-lg border border-yellow-600">
+                <h2 class="text-2xl font-bold text-yellow-500 mb-6 text-center">⚙️ PANEL ADMINISTRATIVO</h2>
+
+                <!-- PIN LOGIN -->
+                <div id="pin-login" class="space-y-4">
+                    <p class="text-white text-center mb-4">Ingresa tu PIN para acceder</p>
+                    <input type="password" id="pin-input" maxlength="4" class="w-full py-3 px-4 text-center text-2xl bg-gray-800 border border-yellow-600 rounded text-white tracking-widest" placeholder="****" onkeyup="if(event.key==='Enter') verificarPIN()">
+                    <button onclick="verificarPIN()" class="w-full bg-yellow-600 text-black font-bold py-2 px-4 rounded hover:bg-yellow-500">ACCEDER</button>
+                </div>
+
+                <!-- GESTIÓN DE PRODUCTOS (OCULTO) -->
+                <div id="admin-panel" class="hidden space-y-6">
+                    <h3 class="text-xl text-yellow-500 font-bold">Gestionar Productos</h3>
+
+                    <div class="bg-gray-900 p-4 rounded">
+                        <h4 class="text-lg text-white font-bold mb-4">Agregar Nuevo Producto</h4>
+                        <div class="space-y-3">
+                            <input type="text" id="nuevo-nombre" class="w-full py-2 px-3 bg-gray-800 border border-yellow-600 rounded text-white" placeholder="Nombre del producto">
+                            <input type="number" id="nuevo-precio" class="w-full py-2 px-3 bg-gray-800 border border-yellow-600 rounded text-white" placeholder="Precio">
+                            <select id="nueva-categoria" class="w-full py-2 px-3 bg-gray-800 border border-yellow-600 rounded text-white">
+                                <option value="">-- Selecciona categoría --</option>
+                                <option value="carnes">Carnes</option>
+                                <option value="sandwiches">Sándwiches</option>
+                                <option value="tacos">Tacos</option>
+                                <option value="bebidas">Bebidas</option>
+                            </select>
+                            <button onclick="agregarProducto()" class="w-full bg-green-600 text-white font-bold py-2 rounded hover:bg-green-500">+ AGREGAR</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded">
+                        <h4 class="text-lg text-white font-bold mb-4">Productos Actuales</h4>
+                        <div id="lista-productos" class="space-y-2 max-h-64 overflow-y-auto"></div>
+                    </div>
+
+                    <button onclick="cerrarAdmin()" class="w-full bg-red-600 text-white font-bold py-2 rounded hover:bg-red-500">🔒 CERRAR SESIÓN</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="text-center mt-20 pb-12">
+            <span class="font-pizarra text-4xl text-white font-bold">JC</span>
+            <p class="text-xs text-gray-500 uppercase tracking-wider">© 2024 • 600 Sur Hochos y Más</p>
+        </footer>
+    </div>
+
+    <script>
+        // ============ DATOS DEL MENÚ ============
+        const menu = {
+            carnes: [
+                { id: 1, nombre: 'Carne Asada Especial', precio: 280, descripcion: 'Corte premium con verduras grilladas' },
+                { id: 2, nombre: 'Carne de Res al Chipotle', precio: 250, descripcion: 'Marinada con chile chipotle' },
+                { id: 3, nombre: 'Costilla BBQ', precio: 320, descripcion: 'Tierna y jugosa con salsa BBQ' },
+            ],
+            sandwiches: [
+                { id: 4, nombre: 'Super Carne', precio: 150, descripcion: 'Carne asada, queso y aguacate' },
+                { id: 5, nombre: 'Sándwich de Pechuga', precio: 120, descripcion: 'Pechuga jugosa con vegetales' },
+            ],
+            tacos: [
+                { id: 6, nombre: 'Tacos al Pastor (3)', precio: 85, descripcion: 'Carne marinada, piña y cilantro' },
+                { id: 7, nombre: 'Tacos Dorados (4)', precio: 95, descripcion: 'Crujientes con salsa verde' },
+                { id: 8, nombre: 'Tacos de Barbacoa (3)', precio: 90, descripcion: 'Tierno, jugoso, irresistible' },
+            ],
+            bebidas: [
+                { id: 9, nombre: 'Refresco (500ml)', precio: 35, descripcion: 'Coca, Sprite, Fanta, Agua' },
+                { id: 10, nombre: 'Cerveza (355ml)', precio: 45, descripcion: 'Diferentes marcas' },
+                { id: 11, nombre: 'Agua Fresca de Jamaica', precio: 30, descripcion: 'Tradicional y refrescante' },
+            ]
+        };
+
+        let adminLogged = false;
+
+        // ============ RENDERIZAR MENÚ ============
+        function renderMenu() {
+            Object.keys(menu).forEach(categoria => {
+                const container = document.getElementById(categoria);
+                container.innerHTML = menu[categoria].map(item => `
+                    <div class="bg-black/50 p-4 rounded border border-white/20 hover:border-yellow-500/60 transition">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-white">${item.nombre}</h3>
+                                <p class="text-sm text-gray-400 mt-1">${item.descripcion}</p>
+                            </div>
+                            <span class="text-xl font-bold text-yellow-500 ml-4">$${item.precio}</span>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        // ============ ADMIN FUNCTIONS ============
+        function verificarPIN() {
+            const pin = document.getElementById('pin-input').value;
+            if (pin === '1234') {
+                adminLogged = true;
+                document.getElementById('pin-login').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+                actualizarListaProductos();
+            } else {
+                alert('❌ PIN incorrecto');
+                document.getElementById('pin-input').value = '';
+            }
+        }
+
+        function cerrarAdmin() {
+            adminLogged = false;
+            document.getElementById('pin-login').classList.remove('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('pin-input').value = '';
+        }
+
+        function agregarProducto() {
+            const nombre = document.getElementById('nuevo-nombre').value;
+            const precio = parseInt(document.getElementById('nuevo-precio').value);
+            const categoria = document.getElementById('nueva-categoria').value;
+
+            if (!nombre || !precio || !categoria) {
+                alert('❌ Completa todos los campos');
+                return;
+            }
+
+            const newId = Math.max(...Object.values(menu).flat().map(p => p.id)) + 1;
+            menu[categoria].push({ id: newId, nombre, precio, descripcion: '' });
+
+            document.getElementById('nuevo-nombre').value = '';
+            document.getElementById('nuevo-precio').value = '';
+            document.getElementById('nueva-categoria').value = '';
+
+            renderMenu();
+            actualizarListaProductos();
+            alert('✅ Producto agregado');
+        }
+
+        function eliminarProducto(categoria, id) {
+            menu[categoria] = menu[categoria].filter(p => p.id !== id);
+            renderMenu();
+            actualizarListaProductos();
+        }
+
+        function actualizarListaProductos() {
+            let html = '';
+            Object.keys(menu).forEach(categoria => {
+                menu[categoria].forEach(item => {
+                    html += `
+                        <div class="bg-gray-800 p-3 rounded flex justify-between items-center">
+                            <div>
+                                <p class="text-white font-bold">${item.nombre}</p>
+                                <p class="text-yellow-500 text-sm">$${item.precio}</p>
+                            </div>
+                            <button onclick="eliminarProducto('${categoria}', ${item.id})" class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-500">Eliminar</button>
+                        </div>
+                    `;
+                });
+            });
+            document.getElementById('lista-productos').innerHTML = html;
+        }
+
+        function mostrarSeccion(seccion) {
+            document.getElementById('menu-section').classList.toggle('hidden', seccion !== 'menu');
+            document.getElementById('admin-section').classList.toggle('hidden', seccion !== 'admin');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('bg-yellow-600', btn.dataset.tab === seccion);
+                btn.classList.toggle('text-black', btn.dataset.tab === seccion);
+                btn.classList.toggle('bg-gray-700', btn.dataset.tab !== seccion);
+                btn.classList.toggle('text-white', btn.dataset.tab !== seccion);
+            });
+        }
+
+        // ============ INICIALIZAR ============
+        renderMenu();
+    </script>
+</body>
+</html>
