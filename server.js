@@ -176,4 +176,6 @@ app.patch('/api/platillos/:id/disponibilidad', async (req, res) => {
 
   try {
     const { id } = req.params;
-    const { disponible } = re
+    const { disponible } = req.body;
+
+    const query = 'UPDATE platillos SET disponible = $
