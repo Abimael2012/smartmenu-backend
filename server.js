@@ -11,7 +11,22 @@ app.use(express.json());
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false 
+    rejectUnauthorized: false
+  }
+});
+
+// Health check endpoint - Verificar que el servidor está funcionando
+app.get('/', (req, res) => {
+  res.json({ status: 'SmartMenu API está funcionando ✓', timestamp: new Date().toISOString() });
+});
+
+// Database health check - Verificar conexión a base de datos
+app.get('/health', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ status: 'Base de datos conectada ✓', time: result.rows[0] });
+  } catch (error) {
+    res.status(500).json({ status: 'Error de base de datos ✗', error: error.message });
   }
 });
 
@@ -127,21 +142,4 @@ app.get('/api/admin/platillos/:restauranteId', async (req, res) => {
   try {
     const { restauranteId } = req.params;
     const query = `
-      SELECT p.*, c.nombre as categoria_nombre 
-      FROM platillos p 
-      JOIN categorias c ON p.categoria_id = c.id 
-      WHERE c.restaurante_id = $1 
-      ORDER BY c.orden, p.nombre`;
-    
-    const resultado = await pool.query(query, [restauranteId]);
-    res.json(resultado.rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al cargar lista de administración' });
-  }
-});
-
-// Encendemos el motor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor de SmartMenu// Vercel redeploy attempt: 2026-04-16T23:40:00Z
+      SELECT p.*, c.nombre
