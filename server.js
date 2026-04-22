@@ -175,4 +175,5 @@ app.patch('/api/platillos/:id/disponibilidad', async (req, res) => {
   }
 
   try {
-    const { id } = 
+    const { id } = req.params;
+    const { disponible } = re
