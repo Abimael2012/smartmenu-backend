@@ -179,4 +179,4 @@ app.patch('/api/platillos/:id/disponibilidad', async (req, res) => {
     const { disponible } = req.body;
 
     const query = 'UPDATE platillos SET disponible = $1 WHERE id = $2 RETURNING *';
-    const resultado = await 
+    const resultado = await pool.query(query, [disponible, 
