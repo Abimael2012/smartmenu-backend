@@ -83,3 +83,4 @@ PORT=3000
 - ✅ El `.env` está en `.gitignore` (no se sube a GitHub)
 - ⚠️ TODO: Agregar autenticación para rutas admin
 - ⚠️ TODO: Validar entrada de datos (SQL injection prevention)
+<!-- v2 -->
